@@ -92,7 +92,8 @@ def action_choise ():
 print ('Здравствуйте!')
 action_choise ()
 
-    
+
+
 
   
 #print('Список документов', documents)
