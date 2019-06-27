@@ -18,6 +18,7 @@ def shelf_number_by_doc_number():
     for shelfs, content_shelf in directories.items():
         if inp in content_shelf:
             print(shelfs)
+            action_choise()
     print("не существует такого номера")
     action_choise()
 
@@ -27,11 +28,12 @@ def name_by_doc_number(documents):
     for doc in documents:
         if doc['number'] == inp:
             print(doc['name'])
+            action_choise()
     print("не существует такого номера")
     action_choise()
 
 
-def list(documents):
+def look(documents):
     for doc in documents:
         print(doc['type'], doc['number'], doc['name'])
     action_choise()
@@ -65,14 +67,17 @@ def del_doc_by_number(documents, directories):
     action_choise()
 
 
-
 def move_to_shelf(directories):
     number = input('Введите номер документа, который нужно переместить на другую полку:')
     shelf_number = input('Введите номер полки, на которую нужно переместить документ:')
+
     for shelfs, content_shelf in directories.items():
-        if number in content_shelf and shelf_number in shelfs :
-            content_shelf.remove(number)
-            directories[shelf_number].append(number)
+        if number in content_shelf:
+            for shelfs in directories:
+                if shelf_number in shelfs:
+                    content_shelf.remove(number)
+                    directories[shelf_number].append(number)
+                    action_choise()
     print("нет документа с таким номером, или Вы выбрали несуществующую полку")
     print('Список полок', directories)
     action_choise()
@@ -97,7 +102,7 @@ def action_choise():
     elif action_choise.lower() == 'p':
         name_by_doc_number(documents)
     elif action_choise.lower() == 'l':
-        list(documents)
+        look(documents)
     elif action_choise.lower() == 'a':
         add_new_doc(documents)
     elif action_choise.lower() == 'd':
@@ -118,7 +123,7 @@ action_choise()
 
 
 # p – people – команда, которая спросит номер документа и выведет имя человека, которому он принадлежит;
-# l – list – команда, которая выведет список всех документов в формате passport "2207 876234" "Василий Гупкин";
+# l – look – команда, которая выведет список всех документов в формате passport "2207 876234" "Василий Гупкин";
 # s – shelf – команда, которая спросит номер документа и выведет номер полки, на которой он находится;
 # a – add – команда, которая добавит новый документ в каталог и в перечень полок, спросив его номер, тип, имя владельца и номер полки, на котором он будет храниться.
 # d – delete – команда, которая спросит номер документа и удалит его из каталога и из перечня полок;
