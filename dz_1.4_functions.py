@@ -65,6 +65,7 @@ def del_doc_by_number(documents, directories):
     action_choise()
 
 
+
 def move_to_shelf(directories):
     number = input('Введите номер документа, который нужно переместить на другую полку:')
     shelf_number = input('Введите номер полки, на которую нужно переместить документ:')
